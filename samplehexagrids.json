@@ -1,0 +1,24 @@
+{
+  "hexaletters": [
+    {
+      "grid": "RALCIBIAESRNPIARRCO",
+      "words": ["ARIES", "CAPRICORN", "LIBRA"],
+      "hint": "Capricorn Signs"
+    },
+    {
+      "grid": "ROWBEPNADRINTMAKNEG",
+      "words": ["RED", "PINK", "MAGENTA", "BROWN"],
+      "hint": "Colors"
+    },
+    {
+      "grid": "UQUEQEISQUTYTNIKIOR",
+      "words": ["QUIET", "QUESTION", "QUIRKY"],
+      "hint": "The Q's Have It"
+    },
+    {
+      "grid": "IENGTIBFHMEBOOOIWWR",
+      "words": ["MEOW", "WOOF", "NEIGH", "RIBBIT"],
+      "hint": "Animal Sounds"
+    }
+  ]
+}

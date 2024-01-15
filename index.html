@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2480067337782125"
+     crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>Hexaletter: Better than wordle by a lot</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- The website stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- The website JavaScript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div class="content" role="main">
+      <div class="wrapper">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#hexModal"
+        >
+          Da Rules
+        </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="hexModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Hexaletter Rules
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <h3>
+                  Aw yeah man! This is a super radical hexagonal
+                  <br />based word game! You gotta try it out!<br />
+                  Click hex tiles one connecting tile at a time to create a word that match a theme.<br/>
+                  Click the 'Submit Word' button if you think you have a valid word.<br />
+                  If it's a valid word in the list that match the theme, it'll turn...green.<br />
+                  If not, it'll just remain white.<br />
+                  Try to clear the board Good luck!
+                </h3>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1 class="title">Hexaletter</h1>
+
+        <button onclick="setupGrid();">Reset Level</button>
+        <button onclick="showtheme()">Show Theme</button>
+        <div id="wordhandler">
+          <h2 class="rainbow" id="currentword"></h2>
+          <button onclick="checkword(event);">Submit Word</button>
+        </div>
+        <svg
+          id="grid"
+          width="400"
+          height="400"
+          viewbox="-225 -225 450 450"
+          style="user-select: none"
+        >
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-87,-150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter1"
+            >
+              C
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(0,-150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter2"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(87,-150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter3"
+            >
+              B
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-130.5,-75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter4"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-43.5,-75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter5"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(43.5,-75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter6"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(130.5,-75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter7"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-174,0)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter8"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-87,0)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter9"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(0,0)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter10"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(87,0)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter11"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(174,0)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter12"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-130.5,75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter13"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-43.5,75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter14"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(43.5,75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter15"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(130.5,75)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center"
+              transform="translate(-12.5,12.5)"
+              id="letter16"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(-87,150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter17"
+            >
+              C
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(0,150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter18"
+            >
+              A
+            </text>
+          </g>
+          <g
+            solved="false"
+            onclick="hexclicked(event)"
+            transform="translate(87,150)"
+          >
+            <polygon
+              fill="white"
+              stroke="black"
+              points="50,0 25,-43.5 -25,-43.5 -50,-0 -25,43.5 25,43.5"
+              transform="rotate(30)"
+            ></polygon>
+            <text
+              color="black"
+              style="font-size: 40; text-align: center; user-select: none"
+              transform="translate(-12.5,12.5)"
+              id="letter19"
+            >
+              B
+            </text>
+          </g>
+        </svg>
+         <a href="https://www.buymeacoffee.com/123seanb" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+      </div>
+          <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    >
+      </script>
+      <script src="hexaletter.js"></script>
+    </div>
+  </body>
+</html>
